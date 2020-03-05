@@ -10,7 +10,7 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 
 time_table_create = ("""
 CREATE TABLE time (
-    start_time timestamp PRIMARY KEY, 
+    start_time time PRIMARY KEY, 
     hour int, 
     day int, 
     week int, 
@@ -21,8 +21,8 @@ CREATE TABLE time (
 
 songplay_table_create = ("""
 CREATE TABLE songplays (
-    songplay_id varchar PRIMARY KEY, 
-    start_time timestamp REFERENCES time(start_time), 
+    songplay_id SERIAL PRIMARY KEY, 
+    start_time time REFERENCES time(start_time), 
     user_id int REFERENCES users(user_id), 
     level varchar, 
     song_id varchar REFERENCES songs(song_id), 
@@ -74,7 +74,7 @@ INSERT INTO songplays (
     session_id, 
     location, 
     user_agent)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, %s, %s)
     ON CONFLICT DO NOTHING
 """)
 
@@ -128,7 +128,10 @@ INSERT INTO time (
 # FIND SONGS
 
 song_select = ("""
-SELECT * FROM songs
+SELECT s.song_id, a.artist_id 
+FROM songs s INNER JOIN artists a
+ON s.artist_id = a.artist_id
+WHERE s.title = %s AND a.name = %s AND s.duration = %s
 """)
 
 # QUERY LISTS
