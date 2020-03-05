@@ -22,11 +22,11 @@ CREATE TABLE time (
 songplay_table_create = ("""
 CREATE TABLE songplays (
     songplay_id SERIAL PRIMARY KEY, 
-    start_time time REFERENCES time(start_time), 
+    start_time varchar NOT NULL, 
     user_id int REFERENCES users(user_id), 
     level varchar, 
-    song_id varchar REFERENCES songs(song_id), 
-    artist_id varchar REFERENCES artists(artist_id), 
+    song_id varchar, 
+    artist_id varchar, 
     session_id int, 
     location varchar, 
     user_agent varchar)
@@ -65,7 +65,6 @@ CREATE TABLE artists (
 
 songplay_table_insert = ("""
 INSERT INTO songplays (
-    songplay_id, 
     start_time, 
     user_id, 
     level, 
@@ -74,7 +73,7 @@ INSERT INTO songplays (
     session_id, 
     location, 
     user_agent)
-    VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     ON CONFLICT DO NOTHING
 """)
 
@@ -86,7 +85,7 @@ INSERT INTO users (
     gender, 
     level)
     VALUES (%s, %s, %s, %s, %s)
-    ON CONFLICT DO NOTHING
+    ON CONFLICT (user_id) DO UPDATE SET level = EXCLUDED.level
 """)
 
 song_table_insert = ("""
