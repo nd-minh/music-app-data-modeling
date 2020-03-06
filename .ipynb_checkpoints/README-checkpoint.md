@@ -28,10 +28,10 @@ Our schema consists of one fact table and four dimension tables. The description
 #### Fact Tables:
 - Tables `SongPlays`: contains records in log data associated with page `NextSong`. *Columns:* songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent. *PK:* songplay_id. *FK:* user_id REFERENCES `Users.user_id`, start_time REFERENCES `Time.start_time`. 
 
-With this design, one can easily query songs that users are listening to, as well as related information about the users, artists, and temporal information of the listening sessions. The details of the transferring process from JSON to database is in `etl.py`. At a glance, we pull the relevant information from JSON source files and then insert it into tables in the database. Instructions to run the ETL pipeline is given belows.
+With this design, one can easily query songs that users are listening to, as well as related information about the users, artists, and temporal information of the listening sessions. The details of the transferring process from JSON to database is in `etl.py`. At a glance, we pull the relevant information from JSON source files and then insert it into tables in the database. Instruction to run the ETL pipeline is given belows.
 
 ### Build Instruction
 1. Run `python create_tables.py` to create the database.
 2. Run `python etl.py` to run the ETL pipeline (load JSON files, extract relevant information, insert into database tables.)
 
-
+**Appendix:** SQL commands to create, insert, and query tables in the database are available in `sql_queries.py`. An interactive environment for the ETL pipeline can be found in `etl.ipynb`. Sample queries of the database are written in `test.ipynb`.  
