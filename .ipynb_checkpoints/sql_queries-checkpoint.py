@@ -10,7 +10,7 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 
 time_table_create = ("""
 CREATE TABLE time (
-    start_time time PRIMARY KEY, 
+    start_time varchar PRIMARY KEY, 
     hour int, 
     day int, 
     week int, 
@@ -22,7 +22,7 @@ CREATE TABLE time (
 songplay_table_create = ("""
 CREATE TABLE songplays (
     songplay_id SERIAL PRIMARY KEY, 
-    start_time varchar NOT NULL, 
+    start_time varchar REFERENCES time(start_time), 
     user_id int REFERENCES users(user_id), 
     level varchar, 
     song_id varchar, 
@@ -135,5 +135,5 @@ WHERE s.title = %s AND a.name = %s AND s.duration = %s
 
 # QUERY LISTS
 
-create_table_queries = [user_table_create, song_table_create, artist_table_create, time_table_create, songplay_table_create]
+create_table_queries = [user_table_create, artist_table_create, song_table_create, time_table_create, songplay_table_create]
 drop_table_queries = [songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
