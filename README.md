@@ -1,6 +1,8 @@
-# Database Modeling for a Music Streaming App
+# Database Modeling for a Music Streaming App (Part 1)
 
-In this project, our aim is to design a database to store relevant data from a music streaming app. We are given two sources of data as follows.
+(This project presents a relational database model for a music streaming app, for a design of NoSQL database version of the app, please refer to Part 2 [here](https://github.com/nd-minh/music-app-data-modeling-part-2).)
+
+In this project, our aim is to design a relational database to store relevant data from a music streaming app. We are given two sources of data as follows.
 
 - Source 1: Logs of user activity on the app, available in JSON format.
 Example:
