@@ -1,10 +1,11 @@
-# Data Engineer Project Series: Design Databases, a Data Warehouse, and a Data Lake for a Music Streaming App 
+# Data Engineer Project Series: Design Databases, a Data Warehouse, a Data Lake, and a Data Pipeline for a Music Streaming App 
 
-The series contain four parts:
+The series contain five parts:
 - Part 1: Design a relational database (Postgre) model for a music streaming app (this repository)
 - [Part 2](https://github.com/nd-minh/music-app-data-modeling-part-2): Design a NoSQL database (Apache Cassandra) version of the app
 - [Part 3](https://github.com/nd-minh/music-app-data-warehouse): Design a Data Warehouse (Amazon Redshift) for this music app
 - [Part 4](https://github.com/nd-minh/music-app-data-lake): Design a Data Lake (Amazon S3 + Spark) for the app
+- [Part 5](https://github.com/nd-minh/music-app-data-pipeline): Design a Data Pipeline that automates the datawarehouse filling process for the app
 
 ## Database Modeling for a Music Streaming App (Part 1)
 
